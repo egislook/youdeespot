@@ -1,0 +1,20 @@
+service: hasuraLambda # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: staging
+  region: ap-southeast-1
+
+functions:
+
+  notification:
+    handler: Test/index.handler
+    events:
+      - http:
+          path: test
+          method: get
+
+plugins:
+  - serverless-offline
+

@@ -5,7 +5,7 @@ import UserLayout from './user-layout';
 export default () => (
   <Protected>
     <UserLayout>
-      <div className="columns is-multiline">
+      <div className="columns is-multiline ps:ab p:20px m:20px m-tb:40px">
         <div className="column">
           <div className="box notification is-primary">
             <div className="heading">Top Seller Total</div>

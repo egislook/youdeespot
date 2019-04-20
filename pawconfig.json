@@ -2,7 +2,7 @@
   "port": "8080",
   "host": "0.0.0.0",
   "appRootUrl": "/",
-  "asyncCSS": false,
+  "asyncCSS": true,
   "serviceWorker": true,
   "serverSideRender": false,
   "singlePageApplication": false

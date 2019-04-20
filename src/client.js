@@ -1,10 +1,18 @@
 // Bulma CSS for light weight CSS. One can any css framework
-import 'bulma/css/bulma.min.css';
-import './resources/css/util.scss';
-import './resources/css/global.css';
+// import 'bulma/css/bulma.min.css';
+// import './resources/css/style.css';
+// import './resources/css/util.scss';
+import css from './resources/css/global.css';
+
+
+console.log(css);
 
 export default class Client {
   advertiseTimeout = 0;
+  
+  apply(clientHandler) {
+    document.querySelector('#fucssStyle').href = '/resources/css/style.css' + '?' + new Date().getTime();
+  }
 
   clearAdvertiseTimeout() {
     if (this.advertiseTimeout) {
@@ -14,6 +22,7 @@ export default class Client {
   }
 
   advertise() {
+    
     this.clearAdvertiseTimeout();
     this.advertiseTimeout = setTimeout(() => {
       let codeFundDiv = document.getElementById('codefund_ad');
@@ -66,11 +75,5 @@ export default class Client {
         page_path: window.location.pathname,
       });
     }
-  }
-
-  apply(clientHandler) {
-    clientHandler.hooks.locationChange.tapPromise('ReloadAds', async () => this.advertise());
-    clientHandler.hooks.locationChange.tapPromise('ReloadGoogleTrack', async () => Client.googleTrack());
-    clientHandler.hooks.renderComplete.tap('ReloadAds', async () => this.advertise());
   }
 }

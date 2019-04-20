@@ -44,6 +44,7 @@
     "bulma": "^0.7.4",
     "cloudinary": "^1.14.0",
     "eslint-import-resolver-webpack": "^0.11.0",
+    "fetchier": "0.0.14",
     "fork-ts-checker-webpack-plugin": "^1.0.1",
     "next-fucss": "0.0.17",
     "prop-types": "^15.7.2",

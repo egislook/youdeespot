@@ -4,8 +4,7 @@
   "description": "Hi there! Welcome to severless setup!",
   "main": "handler.js",
   "dependencies": {
-    "lodash": "^4.17.11",
-    "node-fetch": "^2.3.0",
+    "fetchier": "0.0.14",
     "serverless": "^1.37.1",
     "serverless-offline": "^4.4.2",
     "uuid": "^3.3.2"

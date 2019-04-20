@@ -7,13 +7,13 @@ provider:
   region: ap-southeast-1
 
 functions:
-
-  notification:
-    handler: Test/index.handler
+  
+  import:
+    handler: Functions/Import/index.handler
     events:
       - http:
-          path: test
-          method: get
+          path: import
+          method: post
 
 plugins:
   - serverless-offline

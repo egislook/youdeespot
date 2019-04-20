@@ -6,16 +6,24 @@ export default class Routes {
   // eslint-disable-next-line
   apply(routeHandler) {
     routeHandler.setPwaSchema({
-      name: 'ReactPWA',
-      short_name: 'ReactPWA',
+      name: 'YouDeeSpot',
+      short_name: 'YouDeeSpot',
+      description: 'An awesome youtube playlist collector',
+      icons: [
+        {
+          src: '/resources/img/youdeespot.png',
+          sizes: '512x512'
+        }
+      ]
     });
     routeHandler.setDefaultSeoSchema({
-      title: 'ReactPWA',
+      title: 'YouDeeSpot',
+      author: 'Team 7',
+      description: 'An awesome youtube playlist collector'
     });
 
     const routes = [
       ...GuestRoutes,
-      ...AuthRoutes,
       ...SplashScreen,
     ];
 

@@ -25,7 +25,7 @@ function youtubeItemModel(item){
   const { snippet, contentDetails } = item;
   return {
     title: snippet.title,
-    img: snippet.thumbnails.high && snippet.thumbnails.high.url,
+    img: snippet.thumbnails.medium && snippet.thumbnails.medium.url,
     videoId: contentDetails.videoId,
     playlistAddedAt: snippet.publishedAt,
     channelId: snippet.channelId,

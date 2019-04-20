@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { getPlaylist, getTrack } from '../libs/actions/playlist';
+import { fucss } from 'next-fucss/utils';
 
 const placeholder = 'PLI33t8jpgAnc4p3ROWdz4hD_PERAQ4w0F';
 const exampleUrl = 'https://www.youtube.com/watch?v=KeBR6h2UsLI&list=PLI33t8jpgAnc4p3ROWdz4hD_PERAQ4w0F';
@@ -9,33 +10,31 @@ export default class SplashScreen extends React.Component {
   
   render(){
     
-    const { playlist, isLoading } = this.state;
+    const { playlist, isLoading, message, track } = this.state;
     
-    console.log({ playlist, isLoading });
+    console.log({ playlist, isLoading, message, track });
     
     return (
-      <section className="dp:flx ai:c mnh:100vh jc:c c:sec ps:rl">
-        { isLoading && <div className="ps:fx t,l:0 bg:blacka5 w,h:100pc an:fadeIn" />}
-        <div className="mxw:500px w:100pc p-rl:3pc">
-          <h1 className="fs:275pc fw:100 m-t:10px">YouDeeSpot</h1>
-          <h2 className="fs:140pc fw:400">An awesome youtube playlist collector</h2>
+      <section className="prim:28D29C dp:flx ai:c mnh:100vh jc:c c:sec mxw:100pc of:hd">
+        
+        { (isLoading || message) && <ElemFog 
+          onClose={this.handleClearLoadingState.bind(this)} 
+          message={isLoading ? 'Loading...' : message} /> }
+        
+        <ElemHeader 
+          onChangePlaylist={this.handleFetchPlaylist.bind(this)} 
+          onClearPlaylist={this.handleClearPlaylist.bind(this)} 
+          playlist={playlist} />
+        
+        { playlist && <div>
+          { track && <ElemPlayer track={track} />}
           
-          <form className="m:30px-0">
-            <input 
-              onChange={this.handleFetchPlaylist.bind(this)} 
-              placeholder={placeholder} 
-              defaultValue={placeholder} 
-              className="ta:c p:15px-20px br:3px bd:1px-sld-grey200 bg:grey100 w:100pc fw:600" />
-          </form>
-          
-          { !playlist && <p className="c:grey300 fs:80pc">{exampleUrl}</p>}
-          
-          { playlist && <ElemPlayer />}
-          
-          { playlist && <ElemPlaylist playlist={playlist} selectTrack={this.handleSelectTrack.bind(this)} />}
-          
-          { false && <Link to="/home" className="button">Checkout the full demo</Link>}
-        </div>
+          <ElemPlaylist 
+            playlist={playlist} 
+            selectedTrack={track} 
+            onSelectTrack={this.handleSelectTrack.bind(this)} />
+        </div> }
+      
       </section>
     )
   }
@@ -43,47 +42,119 @@ export default class SplashScreen extends React.Component {
   state = {
     isLoading: null,
     playlist: null,
-    message: null
+    message: null,
+    track: null
   }
   
-  // componentDidMount(){
-  //   this.handleFetchPlaylist();
-  // }
+  componentDidMount(){
+    this.handleFetchPlaylist();
+  }
   
   handleFetchPlaylist = (e) => {
     this.setState({ isLoading: true });
     
     getPlaylist(e && e.target.value)
-      .then( data => this.setState({
-        isLoading: false,
-        playlist: data.data
-      }))
-      .catch( data => this.setState({
-        isLoading: false,
-        message: data.message
-      }))
+      .then( data => this.setState({ isLoading: false, playlist: data.data }))
+      .catch( data => this.setState({ isLoading: false, message: data.message }))
+  }
+  
+  handleClearPlaylist = () => {
+    this.setState({ playlist: null });
   }
   
   handleSelectTrack = (track) => {
-    console.log(track);
+    this.setState({ isLoading: true });
+    
     getTrack(track.videoId).then( src => {
-      document.querySelector('#youtube').src = src;
-      document.querySelector('#youtube').play();
+      this.setState({ track: { ...track, src }, isLoading: false });
     })
   }
+  
+  handleClearLoadingState = () => this.setState({ isLoading: null, message: null })
 }
 
-const ElemPlaylist = ({ playlist, selectTrack }) => (
-  <div className="bg:black300 c:white p:20px ta:l m-t:30px">
+const ElemHeader = ({ playlist, onChangePlaylist, onClearPlaylist }) => {
+  
+  const image = '/resources/img/youdeespot.png';
+  const title = 'YouDeeSpot';
+  const description = 'An awesome youtube playlist collector';
+  
+  const isPlaylist = !!playlist;
+  
+  return (
+    <div className={classNameHeader(isPlaylist)}>
+      <img src={image} className="h:25px" />
+      {!isPlaylist && <h1 className="fs:250pc fw:100 m-t:5px lh:1">{title}</h1>}
+      {!isPlaylist && <h2 className="fs:120pc fw:400 m-b:20px">{description}</h2>}
+      
+      <form className="w:100pc">
+        <input 
+          onChange={onChangePlaylist} 
+          placeholder={placeholder} 
+          defaultValue={placeholder} 
+          className={classNameInput(isPlaylist)} />
+      </form>
+      
+      { isPlaylist && <span 
+        className="p:3px-5px c:prim bg:white bs:2 fw:800 fs:70pc br:3px tt:uc crs:pt lh:1.7 hv-bs:1_bg:prim_c:white ts:all" 
+        onClick={onClearPlaylist}>clear</span> }
+      
+      { !isPlaylist && <p className="c:grey300 fs:80pc m-t:20px">{exampleUrl}</p>}
+      
+      { false && <Link to="/home" className="button">Checkout the full demo</Link>}
+    </div>
+  )
+}
+
+const classNameInput = (isPlaylist) => fucss({
+  'bg:grey100 w:100pc fw:600': true,
+  'ta:c p:15px-20px br:3px bd:1px-sld-grey200': !isPlaylist,
+  'bg:grey100 h:25px p-rl:5px': isPlaylist
+})
+
+const classNameHeader = (isPlaylist) => fucss({
+  'p:10px-3pc': true,
+  'mxw:500px w:100pc': !isPlaylist,
+  'w:100pc ps:fx t,l:0 dp:flx bg:white jc:sb bs:2': isPlaylist
+})
+
+const ElemPlaylist = ({ playlist, onSelectTrack, selectedTrack = {} }) => (
+  <div className={classNamePlaylist(!!selectedTrack)}>
     {playlist.map(track => (
-      <div key={track.position} onClick={e => selectTrack && selectTrack(track)} className="p:10px bd-b:1px-sld-black200 dp:flx ai:fs jc:fs">
-        <img src={track.img} className="w:60px" />
-        <h2 className="m-l:15px fs:100pc">{track.title}</h2>
+      <div 
+        key={track.position} 
+        onClick={e => onSelectTrack(track)} 
+        className={classNamePlaylistTrack(selectedTrack && track.position === selectedTrack.position)}>
+          <img src={track.img} className="h:40px" />
+          <h2 className="m-l:10px fs:90pc">{track.title}</h2>
       </div>
     ))}
   </div>
 )
 
-const ElemPlayer = (src) => (
-  <audio id="youtube" autoPlay controls loop />
+const classNamePlaylist = (isSelectedTrack) => fucss({
+  'bg:black300 c:white ta:l p-t:45px': true,
+  'm-b:100px': isSelectedTrack
+})
+
+const classNamePlaylistTrack = (isSelectedTrack) => fucss({
+  'p:10px bd-b:1px-sld-black dp:flx ai:fs jc:fs ts:bg': true,
+  'ac-bg:black crs:pt': !isSelectedTrack,
+  'bg:black': isSelectedTrack
+})
+
+const ElemPlayer = ({ track }) => (
+  <div className="ps:fx b,r:0 w:100pc bg:grey100 bs:2 of:hd">
+    <audio id="youtube" autoPlay controls loop src={track.src} />
+    <h3 className="fs:70pc w:100pc ws:np p:3px-10px bg:white bd-t:1px-sld-grey200">
+      <img src={track.img} className="h:10px m-r:5px m-b:2px" />
+      {track.title}
+    </h3>
+  </div>
+)
+
+const ElemFog = ({ message, onClose }) => (
+  <div onClick={onClose} className="ps:fx t,l:0 bg:blacka5 w,h:100pc an:fadeIn dp:flx ai:c">
+    <span className="bg:white br:3px p:20px-30px fs:150pc">{message || 'Loading...'}</span>
+  </div>
 )

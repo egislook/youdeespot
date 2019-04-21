@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "An awesome youtube playlist collector",
   "scripts": {
+    "start:prod": "node ./dist/server.js",
     "start": "pawjs --no-cache --env=development start",
     "build": "pawjs --no-cache --config=./prod-pawconfig.json --env=production build",
     "build:demo": "pawjs --no-cache --config=./demo-pawconfig.json --env=production build",

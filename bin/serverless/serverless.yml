@@ -12,7 +12,7 @@ functions:
     handler: Functions/Import/index.handler
     events:
       - http:
-          path: import
+          path: api/import
           method: post
 
 plugins:

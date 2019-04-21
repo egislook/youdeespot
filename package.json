@@ -1,7 +1,7 @@
 {
   "name": "youdeespot",
   "version": "0.0.0",
-  "description": "A highly scalable, Progressive Web Application foundation with the best Developer Experience (DX).",
+  "description": "An awesome youtube playlist collector",
   "scripts": {
     "start": "pawjs --no-cache --env=development start",
     "build": "pawjs --no-cache --config=./prod-pawconfig.json --env=production build",
@@ -11,45 +11,19 @@
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
-  "author": {
-    "name": "Atyantik Technologies",
-    "email": "admin@atyantik.com",
-    "url": "https://www.atyantik.com/"
-  },
-  "contributors": [
-    {
-      "name": "Tirth Bodawala",
-      "email": "tirthbodawala@atyantik.com",
-      "url": "https://www.atyantik.com/"
-    },
-    {
-      "name": "Yash Thakur",
-      "email": "thakur.yash514@gmail.com",
-      "url": "http://yashthakur.in/"
-    },
-    {
-      "name": "Ajay Patel",
-      "email": "ajaypatel@atyantik.com",
-      "url": "https://www.atyantik.com/"
-    }
-  ],
   "license": "MIT",
   "dependencies": {
     "@pawjs/image-optimizer": "^2.2.0-beta.0",
     "@pawjs/pawjs": "^2.4.0-beta.0",
-    "@pawjs/sass": "^2.2.0-beta.0",
     "@pawjs/srcset": "^2.1.0-beta.0",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
-    "bulma": "^0.7.4",
     "cloudinary": "^1.14.0",
     "eslint-import-resolver-webpack": "^0.11.0",
     "fetchier": "0.0.14",
     "fork-ts-checker-webpack-plugin": "^1.0.1",
     "next-fucss": "0.0.17",
-    "prop-types": "^15.7.2",
-    "snyk": "^1.143.1",
-    "universal-fetch": "^1.0.0"
+    "snyk": "^1.143.1"
   },
   "snyk": true,
   "devDependencies": {

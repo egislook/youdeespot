@@ -3,7 +3,7 @@
   "asyncCSS": true,
   "host": "0.0.0.0",
   "polyfill": "cdn",
-  "port": "3003",
+  "port": "8080",
   "react": "cdn",
   "serverSideRender": true,
   "serviceWorker": true,

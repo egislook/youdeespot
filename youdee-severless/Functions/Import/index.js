@@ -3,12 +3,9 @@ const { YOUTUBE_API_KEY, YOUTUBE_API_ENDPOINT } = require('../../config');
 
 module.exports.handler = async event => {
   
-  try{
-    const data = await getYoutubePlaylist();
-    return result(200, data);
-  } catch(error){ 
-    return result(500, error);
-  }
+  return getYoutubePlaylist()
+    .then(success)
+    .catch(fail)
 }
 
 function getYoutubePlaylist(playlistId){
@@ -44,4 +41,12 @@ function result(statusCode, data){
       data: statusCode === 200 && data
     })
   }
+}
+
+function success(data){
+  return result(200, data);
+}
+
+function fail(data){
+  return result(500, data);
 }

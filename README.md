@@ -25,6 +25,7 @@
 [Progressive Web App and published it in 3 app stores](https://medium.freecodecamp.org/i-built-a-pwa-and-published-it-in-3-app-stores-heres-what-i-learned-7cb3f56daf9b)  
 [AWW](https://awwapp.com/b/ucwizf5i3/?dis=%5B%5B%22no-init-modal%22%5D%2C%5B%22join-board%22%5D%5D)  
 [Customize Media Notifications and Handle Playlists](https://developers.google.com/web/updates/2017/02/media-session)  
+[Reverse-engineering YouTube](https://tyrrrz.me/Blog/Reverse-engineering-YouTube)
 
 ```javascript
 /**

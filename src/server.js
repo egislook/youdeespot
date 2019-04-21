@@ -10,7 +10,7 @@ export default class Server {
       const { htmlProps: { head } } = Application;
       head.push(<meta key="meta-theme-color" name="theme-color" content="#28D29C" />);
       head.push(<link key="favicon" rel="shortcut icon" type="image/png" href={favicon} />);
-      head.push(<link type="text/css" id="fucssStyle" rel="stylesheet" href={fucssStyle} />)
+      head.push(<link key="fucssStyle" type="text/css" id="fucssStyle" rel="stylesheet" href={fucssStyle} />)
       return true;
     });
     

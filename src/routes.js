@@ -1,7 +1,3 @@
-import GuestRoutes from './pages/guest';
-import AuthRoutes from './pages/auth';
-import SplashScreen from './pages/splash';
-
 export default class Routes {
   // eslint-disable-next-line
   apply(routeHandler) {
@@ -23,8 +19,16 @@ export default class Routes {
     });
 
     const routes = [
-      ...GuestRoutes,
-      ...SplashScreen,
+      {
+        path: '/home',
+        exact: true,
+        component: () => import('./components/home'),
+      },
+      {
+        path: '/',
+        exact: true,
+        component: () => import('./components/splash'),
+      }
     ];
 
     routeHandler.hooks.initRoutes.tapPromise('AppRoutes', async () => {

@@ -72,5 +72,3 @@ src/config/assets.js
 
 # Ignore sass cache
 .sass-cache
-
-/src/resources/css

@@ -1,7 +1,7 @@
 import { POST, fetch } from 'fetchier';
 
 export function getPlaylist(playlistId) {
-  return POST({ url: 'https://youdeespot-noneede.c9users.io:8081/import' })
+  return POST({ url: 'https://youdeespot.com/api/import' || 'https://youdeespot-noneede.c9users.io:8081/import' })
   // if (!sKey) { return null; }
   // return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 }

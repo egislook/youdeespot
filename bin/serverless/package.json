@@ -7,7 +7,8 @@
     "fetchier": "0.0.14",
     "serverless": "^1.37.1",
     "serverless-offline": "^4.4.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "ytdl-core": "^0.29.1"
   },
   "devDependencies": {},
   "scripts": {

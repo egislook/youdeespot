@@ -3,7 +3,9 @@ const { YOUTUBE_API_KEY, YOUTUBE_API_ENDPOINT } = require('../../config');
 
 module.exports.handler = async event => {
   
-  return getYoutubePlaylist()
+  const body = JSON.parse(event.body);
+  
+  return getYoutubePlaylist(body.playlistId)
     .then(success)
     .catch(fail)
 }
@@ -20,7 +22,10 @@ function getYoutubePlaylist(playlistId){
 
 function youtubeItemModel(item){
   const { snippet, contentDetails } = item;
+  const name = snippet.title.split('- ');
   return {
+    name: name.pop(),
+    artist: name.join('- '),
     title: snippet.title,
     img: snippet.thumbnails.medium && snippet.thumbnails.medium.url,
     videoId: contentDetails.videoId,

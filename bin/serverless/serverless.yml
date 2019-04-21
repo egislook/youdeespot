@@ -14,6 +14,13 @@ functions:
       - http:
           path: api/import
           method: post
+          
+  url:
+    handler: Functions/Url/index.handler
+    events:
+      - http:
+          path: api/url
+          method: post
 
 plugins:
   - serverless-offline

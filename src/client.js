@@ -2,6 +2,8 @@ export default class Client {
   advertiseTimeout = 0;
   
   apply(clientHandler) {
+    // const { dev } = clientHandler.options.env;
+    // if(!dev) return;
     document.querySelector('#fucssStyle').href = '/resources/css/style.css' + '?' + new Date().getTime();
   }
 

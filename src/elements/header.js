@@ -46,7 +46,7 @@ export default ({ playlist, onChangePlaylist, onClearPlaylist, image }) => {
 }
 
 const classNameForm = () => fucss({
-  'w:calc(100pc-30px) ps:fx t,l,r:0 m:15px dp:flx ai:c bg:26292D br:5px': true
+  'w:100pc m:15px-auto dp:flx ai:c bg:26292D br:5px mxw:674px': true
 })
 
 const classNameInput = (isPlaylist) => fucss({
@@ -54,8 +54,7 @@ const classNameInput = (isPlaylist) => fucss({
 })
 
 const classNameHeader = (isPlaylist) => fucss({
-  'mxw:300px w:100pc': !isPlaylist,
-  'w:100pc ps:fx t,l:0 dp:flx bg:white jc:sb bs:2': isPlaylist
+  'w:100pc ps:fx t,l:0 dp:flx jc:sb bs:2': isPlaylist
 })
 
 const ElemLogo = ({ image, name }) => (

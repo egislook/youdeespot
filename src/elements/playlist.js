@@ -20,7 +20,7 @@ export default ({ playlist, onSelectTrack, selectedTrack = {} }) => (
 )
 
 const classNamePlaylist = (isSelectedTrack) => fucss({
-  'ta:l p-t:70px p-rl:15px p-b:20px': true,
+  'ta:l p-t:70px p-rl:15px p-b:20px w:100vw mxw:704px': true,
   'm-b:100px': isSelectedTrack
 })
 

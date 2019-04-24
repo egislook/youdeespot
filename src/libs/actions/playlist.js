@@ -11,6 +11,11 @@ export function getPlaylist(playlistId) {
 export function getTrack(videoId) {
   
   return POST({ url: API_URL + '/api/url', body: { videoId } })
-    .then(({ data }) => data && data.formats.find( format => format.itag === '140'))
-    .then(format => console.log(format.url) || format.url);
+    .then(res => res.data)
+    .then(data => {
+      console.log(data);
+      const format = data.formats.find( f => f.itag === '140')
+      console.log(format.url, data); 
+      return format.url;
+    });
 }

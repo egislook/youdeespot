@@ -7,7 +7,7 @@ a{text-decoration: none; color: inherit;}
 a, span, img, button, i, label{display: inline-block; vertical-align: middle;}
 button, a, i, label, img{cursor: pointer; font-style: normal;}
 input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
-::selection{background: #28D29C; color: #fff;}
+::selection{background: #8D34D5; color: #fff;}
 [contenteditable]{cursor: text}
 [contenteditable]:empty:before{content: attr(placeholder); opacity: 0.5; display: block;}
 /** Fucss class rules */ 
@@ -31,7 +31,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fs\:95pc{font-size:95%;}
 .m-tb\:20px{margin-top:20px;margin-bottom:20px;}
 .p\:3px-5px{padding:3px 5px;}
-.c\:prim{color:#28D29C;}
+.c\:prim{color:#8D34D5;}
 .bg\:white{background:#fff;}
 .bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .fw\:800{font-weight:800;}
@@ -39,7 +39,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .br\:3px{border-radius:3px;}
 .tt\:uc{text-transform:uppercase;}
 .lh\:1\.7{line-height:1.7;}
-.hv-bs\:1_bg\:prim_c\:white:hover{box-shadow:0px 1px 2px rgba(0,0,0,0.10);background:#28D29C;color:#fff;}
+.hv-bs\:1_bg\:prim_c\:white:hover{box-shadow:0px 1px 2px rgba(0,0,0,0.10);background:#8D34D5;color:#fff;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .c\:grey300{color:#bdbdbd;}
 .fs\:80pc{font-size:80%;}
@@ -83,7 +83,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .ac-bg\:black:active{background:#111;}
 .bg\:black{background:#111;}
 .b\,r\:0{bottom:0;right:0;}
-.bg\:prim{background:#28D29C;}
+.m\:0-15px{margin:0 15px;}
+.bg\:prim{background:#8D34D5;}
 .h\,w\,mnw\,lh\:45px{height:45px;width:45px;min-width:45px;line-height:45px;}
 .bg-sz\:cv{background-size:cover;}
 .bg-ps\:c{background-position:center;}
@@ -96,6 +97,11 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:blacka2{background:rgba(17,17,17,0.2);}
 .m-t\:7px{margin-top:7px;}
 .dp\:n{display:none;}
+.bg\:prim800{background:#5f06a7;}
+.p\:2px{padding:2px;}
+.l\:0{left:0;}
+.h\:5px{height:5px;}
+.m-l\:0{margin-left:0;}
 .bg\:blacka5{background:rgba(17,17,17,0.5);}
 .w\,h\:100pc{width:100%;height:100%;}
 .an\:fadeIn{animation:fadeIn;}
@@ -103,6 +109,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p\:10px-30px{padding:10px 30px;}
 .w\,h\:50px{width:50px;height:50px;}
 .an\:scaler-inf-1s-eio{animation:scaler infinite 1s ease-in-out;}
+.m-b\:5px{margin-bottom:5px;}
+.p\:3px{padding:3px;}
+.h\:3px{height:3px;}
+.m-b\:10px{margin-bottom:10px;}
+.fs\:60pc{font-size:60%;}
+.fs\:50pc{font-size:50%;}
+.fs\:40pc{font-size:40%;}
 @keyframes spin{to { transform: rotate(360deg); }}
 @keyframes fadeIn{from { opacity: 0.2; } to { opacity: 1; }}
 @keyframes fadeOut{from { opacity: 1; } to { opacity: 0.5; }}

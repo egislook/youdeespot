@@ -35,7 +35,7 @@
  
  ```
  
- ### PM2
+ ## PM2
  
  ```javascript
  npm install -g pm2
@@ -43,35 +43,31 @@
  cd bin/serverless
  pm2 start npm --- run start
  ```
- ### Node
+ ## Node
  (https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
  
- ### ngnix
+ ## ngnix
  (https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)  
  (https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04)  
+ (https://www.liaohuqiu.net/posts/nginx-proxy-pass/)
+ 
+ #### Example File: /bin/default
  
  ```javascript
  sudo nano /etc/nginx/sites-available/default
- 
- location / {
-    proxy_pass http://localhost:8080;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-  location /api {
-    proxy_pass http://localhost:8081;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
- 
+ sudo systemctl reload nginx
  ```
+ 
+## Hasura
+(https://docs.docker.com/compose/install/#install-compose)
+
+#### Example File: /bin/docker-compose.yml
+#### Default File: wget https://raw.githubusercontent.com/hasura/graphql-engine/master/install-manifests/docker-compose/docker-compose.yaml
+
+```javascript
+docker-compose up -d
+docker-compose stop || docker-compose down
+```
  
 ### Setup Sever With Docker
 `sudo apt-get update`  

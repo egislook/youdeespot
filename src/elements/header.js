@@ -17,30 +17,25 @@ export default ({ playlist, onChangePlaylist, onClearPlaylist, image }) => {
   return (
     <div className={classNameHeader(isPlaylist)}>
       
-      <form className={classNameForm()}>
-        <i className="fu-search c:56585C m-l:10px m-b:2px" />
-        <input 
-          onChange={onChangePlaylist} 
-          placeholder={placeholder} 
-          defaultValue={example} 
-          className={classNameInput(isPlaylist)} />
-        {isPlaylist && <i onClick={onClearPlaylist} className="fu-cross c:56585C p-r:10px crs:pt m-b:2px" />}
-      </form>
-      
-      {!isPlaylist && <div>
-      
-        <h1 className="fs:160pc m-t:5px lh:1.1 mxw:200px">{title.map(text => (<div key={text}>{text}</div>))}</h1>
+      <div>
+        <h1 className="fs:160pc m-t:5px lh:1.1 mxw:200px">{title.map(text => (
+          <div key={text}>{text}</div>
+        ))}</h1>
         <h2 className="fs:95pc m-tb:20px c:56585C">{description}</h2>
+        
+        <form className={classNameForm()}>
+          <i className="fu-search c:56585C m-l:10px m-b:2px" />
+          <input 
+            onChange={onChangePlaylist} 
+            placeholder={placeholder} 
+            defaultValue={example} 
+            className={classNameInput(isPlaylist)} />
+          {isPlaylist && <i onClick={onClearPlaylist} className="fu-cross c:56585C p-r:10px crs:pt m-b:2px" />}
+        </form>
+        
         <ElemLogo image={image} name={name} />
-        
-        { isPlaylist && <span 
-          className="p:3px-5px c:prim bg:white bs:2 fw:800 fs:70pc br:3px tt:uc crs:pt lh:1.7 hv-bs:1_bg:prim_c:white ts:all" 
-          onClick={onClearPlaylist}>clear</span> }
-        
-        { false && !isPlaylist && <p className="c:grey300 fs:80pc m-t:20px">{exampleUrl}</p>}
-        
-        { false && <Link to="/home" className="button">Checkout the full demo</Link>}
-      </div>}
+      </div>
+      
     </div>
   )
 }

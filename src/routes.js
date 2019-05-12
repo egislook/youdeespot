@@ -20,14 +20,14 @@ export default class Routes {
 
     const routes = [
       {
-        path: '/home',
+        path: '/playlists',
         exact: true,
-        component: () => import('./components/home'),
+        component: () => import('./components/playlist'),
       },
       {
         path: '/',
         exact: true,
-        component: () => import('./components/splash'),
+        component: () => import('./components/home'),
       }
     ];
 

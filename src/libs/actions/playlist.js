@@ -1,6 +1,6 @@
 import { POST, fetch } from 'fetchier';
 
-const API_URL = true ? 'https://youdeespot.com' : 'https://youdeespot-noneede.c9users.io:8081';
+const API_URL = true ? 'https://youdeespot.com' : 'https://pwa-noneede.c9users.io:8081';
 
 export function getPlaylist(playlistId) {
   return POST({ url: API_URL + '/api/import', body: { playlistId } })

@@ -33,7 +33,7 @@ export default ({ image, global }) => {
             placeholder={placeholder}
             className={classNameInput()} />
           <i onClick={isValidSearch && handleSearchSubmit || null} className={classNameSubmit(isValidSearch)} />
-          {false && <i onClick={() => handleSearchChange()} className="fu-cross c:56585C p-r:10px crs:pt m-b:2px" />}
+          {isValidSearch && <i onClick={() => handleSearchChange()} className="fu-cross c:56585C p-r:10px crs:pt m-b:2px" />}
         </form>
         
         <ElemLogo image={image} name={name} />
@@ -48,8 +48,8 @@ export default ({ image, global }) => {
 }
 
 const ElemPlaylistPreview = ({ img, title, channelTitle, playlistId }) => (
-  <Link className="md-m:10px md-mxw:30pc" to={'/playlist/' + playlistId }>
-    <span key={title} className="bg:26292D bs:2 br:5px w:100pc m-b:20px hv-scl:1.05_bg:black ts:all">
+  <Link key={title} className="md-m:10px md-mxw:30pc" to={'/playlist/' + playlistId }>
+    <span className="bg:26292D bs:2 br:5px w:100pc m-b:20px hv-scl:1.05_bg:black ts:all">
       <img className="w:100pc dp:bk" src={img} />
       <p className="p:30px">{title} by {channelTitle}</p>
     </span>

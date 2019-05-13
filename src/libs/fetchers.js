@@ -5,7 +5,8 @@ const API_URL = false ? 'https://youdeespot.com' : 'https://pwa-noneede.c9users.
 
 const queries = {
   tracks: `query($videoIds: [String]) { track(where: { videoId: { _in: $videoIds } }) { id title name artist img videoId } }`,
-  playlists: `query { playlist { id title playlistId title description img channelTitle itemCount videoIds } }`
+  playlists: `query { playlist { id title playlistId title description img channelTitle itemCount } }`,
+  playlist: (playlistId) => `query { playlist(where: { playlistId: { _eq: "${playlistId}"}}) { id title playlistId title description img channelTitle itemCount videoIds } }`
 }
 
 export function fetchPlaylists() {
@@ -15,7 +16,6 @@ export function fetchPlaylists() {
 
 export function importPlaylist(playlistId){
   return POST({ url: API_URL + '/api/import', body: { playlistId } })
-    .then(console.log)
 }
 
 export function fetchTrack(videoId) {
@@ -25,7 +25,17 @@ export function fetchTrack(videoId) {
     .then(data => {
       console.log(data);
       const format = data.formats.find( f => f.itag === '140')
-      console.log(format.url, data); 
       return format.url;
     });
+}
+
+export async function fetchPlaylist(playlistId){
+  
+  const playlist = await GQL({ url: HASURA_URL, query: queries.playlist(playlistId)})
+    .then(({ playlist: [playlist] }) => playlist);
+    
+  const { videoIds } = playlist;
+  
+  return GQL({ url: HASURA_URL, query: queries.tracks, variables: { videoIds }  })
+    .then(data => ({ ...playlist, tracks: data.track }))
 }

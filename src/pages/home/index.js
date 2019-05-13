@@ -13,7 +13,6 @@ export default () => {
   
   const global = useGlobal();
   const { isLoading, errorMessage, handleInfo } = global;
-  // const { playlist, track, isPlaying, duration, currentTime } = {};
   
   return (
     <section className="prim:8D34D5 dp:flx ai:c mnh:100vh jc:c c:F9FBFD mxw:100pc of:hd bg:1A1D22">
@@ -30,88 +29,3 @@ export default () => {
     </section>
   )
 }
-  
-//   state = {
-//     isLoading: null,
-//     playlist: null,
-//     message: null,
-//     track: null,
-//     isPlaying: null
-//   }
-  
-//   componentDidMount(){
-//     this.handleFetchPlaylist();
-//   }
-  
-//   handleFetchPlaylist = (e) => {
-//     this.setState({ isLoading: true });
-    
-//     getPlaylist(e && e.target.value)
-//       .then( data => this.setState({ isLoading: false, playlist: data.data, message: null }))
-//       .catch( data => {
-//         console.log(data);
-//         this.setState({ isLoading: false, message: data.message && data.message.message || 'Internal Server Error' })
-//       })
-//   }
-  
-//   handleClearPlaylist = () => {
-//     this.setState({ playlist: null });
-//   }
-  
-//   handleSelectTrack = (track) => {
-//     this.setState({ isLoading: true });
-    
-//     getTrack(track.videoId).then( src => {
-//       this.setState({ track: { ...track, src }, isLoading: false, isPlaying: true });
-//       const elem = document.querySelector('#youtube');
-      
-//       elem.onended = e => this.handleChangeTrack();
-      
-//       elem.onerror = (error) => {
-//         console.log(error);
-//         this.setState({ message: `${track.artist} - ${track.name} is Not Available`})
-//         this.handleChangeTrack();
-//       }
-//       elem.onloadedmetadata = e => {
-//         const duration = document.querySelector('#youtube').duration;
-//         console.log(typeof duration, duration);
-//         this.handleTrackProgress();
-//       }
-      
-//     })
-//   }
-  
-//   handleTrackProgress = () => {
-//     const elem = document.querySelector('#youtube');
-        
-//     this.timer = setInterval(() => {
-//       // const percentage = (elem.currentTime / elem.duration) * 100;
-//       // console.log(percentage);
-//       this.setState({
-//         duration: elem.duration,
-//         currentTime: elem.currentTime
-//       })
-//     }, 500);
-//   }
-  
-//   handleTogglePlay = () => {
-//     const elem = document.querySelector('#youtube');
-//     const isPlaying = !this.state.isPlaying;
-//     isPlaying 
-//       ? (elem.play(), this.handleTrackProgress()) 
-//       : (elem.pause(), clearInterval(this.timer));
-//     this.setState({ isPlaying })
-//   }
-  
-//   handleChangeTrack = () => {
-//     const nextTrack = this.state.playlist.find(track => track.position === parseInt(this.state.track.position) + 1);
-//     this.handleSelectTrack(nextTrack);
-//   }
-  
-//   handleChangeTime = (currentTime) => {
-//     document.querySelector('#youtube').currentTime = currentTime;
-//     this.setState({ currentTime });
-//   }
-  
-//   handleClearLoadingState = () => this.setState({ isLoading: null, message: null })
-// }

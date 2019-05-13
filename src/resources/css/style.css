@@ -19,62 +19,106 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mxw\:100pc{max-width:100%;}
 .of\:hd{overflow:hidden;}
 .bg\:1A1D22{background:#1A1D22;}
-.fs\:160pc{font-size:160%;}
+.ps\:fx{position:fixed;}
+.l\,t\:0{left:0;top:0;}
+.p\:10px{padding:10px;}
+.b\,r\:0{bottom:0;right:0;}
+.m\:0-15px{margin:0 15px;}
+.m-b\:10px{margin-bottom:10px;}
+.w\:100pc{width:100%;}
+.mxw\:calc\(704px-5px\){max-width:calc(704px - 5px);}
+.p-l\:25px{padding-left:25px;}
+.bg\:prim800{background:#5f06a7;}
+.p\:3px{padding:3px;}
+.l\:0{left:0;}
+.m-b\:5px{margin-bottom:5px;}
+.br\:3px{border-radius:3px;}
+.bg\:prim{background:#8D34D5;}
+.h\:3px{height:3px;}
+.m-l\:0{margin-left:0;}
+.bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
+.br\:5px{border-radius:5px;}
+.h\,w\,mnw\,lh\:45px{height:45px;width:45px;min-width:45px;line-height:45px;}
+.bg-sz\:cv{background-size:cover;}
+.bg-ps\:c{background-position:center;}
+.lh\:1{line-height:1;}
+.fs\:150pc{font-size:150%;}
+.fs\:40pc{font-size:40%;}
+.m-t\:2px{margin-top:2px;}
+.fs\:70pc{font-size:70%;}
+.ta\:l{text-align:left;}
+.m-l\:10px{margin-left:10px;}
 .m-t\:5px{margin-top:5px;}
+.m-r\:0{margin-right:0;}
+.p\:7px{padding:7px;}
+.br\:50pc{border-radius:50%;}
+.bd\:1px-sld-white{border:1px solid #fff;}
+.bg\:blacka2{background:rgba(17,17,17,0.2);}
+.m-t\:7px{margin-top:7px;}
+.dp\:n{display:none;}
+.fs\:100pc{font-size:100%;}
+.h\:25px{height:25px;}
+.fs\:80pc{font-size:80%;}
+.c\:4B4D51{color:#4B4D51;}
+.m-t\:3px{margin-top:3px;}
+.fw\:600{font-weight:600;}
+.p-t\:70px{padding-top:70px;}
+.p-rl\:15px{padding-right:15px;padding-left:15px;}
+.p-b\:20px{padding-bottom:20px;}
+.w\:100vw{width:100vw;}
+.mxw\:704px{max-width:704px;}
+.m-b\:100px{margin-bottom:100px;}
+.ai\:fs{align-items:flex-start;}
+.jc\:fs{justify-content:flex-start;}
+.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.bg\:1F2126{background:#1F2126;}
+.m-t\:10px{margin-top:10px;}
+.bs\:1{box-shadow:0px 1px 2px rgba(0,0,0,0.10);}
+.c\:D7D9DC{color:#D7D9DC;}
+.ac-bg\:black:active{background:#111;}
+.crs\:pt{cursor:pointer;}
+.bg\:black{background:#111;}
+.p-tb\:30px{padding-top:30px;padding-bottom:30px;}
+.p-rl\:3pc{padding-right:3%;padding-left:3%;}
+.fs\:160pc{font-size:160%;}
 .lh\:1\.1{line-height:1.1;}
 .mxw\:200px{max-width:200px;}
 .fs\:95pc{font-size:95%;}
 .m-tb\:20px{margin-top:20px;margin-bottom:20px;}
 .c\:56585C{color:#56585C;}
-.m-l\:10px{margin-left:10px;}
 .m-b\:2px{margin-bottom:2px;}
 .p-r\:10px{padding-right:10px;}
-.crs\:pt{cursor:pointer;}
-.m-t\:10px{margin-top:10px;}
 .bg\:26292D{background:#26292D;}
-.bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
-.br\:5px{border-radius:5px;}
-.m\:10px{margin:10px;}
+.m-b\:20px{margin-bottom:20px;}
 .hv-scl\:1\.05_bg\:black:hover{transform:scale(1.05);background:#111;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.w\:100pc{width:100%;}
 .dp\:bk{display:block;}
 .p\:30px{padding:30px;}
 .c\:green{color:#4CAF50;}
 .m\:15px-auto{margin:15px auto;}
 .mxw\:674px{max-width:674px;}
-.p\:10px{padding:10px;}
 .fs\:85pc{font-size:85%;}
 .c\:grey200{color:#e0e0e0;}
-.fw\:600{font-weight:600;}
 .bg\:ts{background:transparent;}
-.ps\:fx{position:fixed;}
 .t\,l\:0{top:0;left:0;}
 .jc\:sb{justify-content:space-between;}
 .h\:14px{height:14px;}
 .m-r\:5px{margin-right:5px;}
-.m-t\:2px{margin-top:2px;}
-.lh\:1{line-height:1;}
 .fs\:90pc{font-size:90%;}
 .bg\:blacka5{background:rgba(17,17,17,0.5);}
 .w\,h\:100pc{width:100%;height:100%;}
 .an\:fadeIn{animation:fadeIn;}
 .z\:2{z-index:2;}
 .c\:prim{color:#8D34D5;}
-.br\:3px{border-radius:3px;}
 .p\:20px-30px{padding:20px 30px;}
 .fs\:120pc{font-size:120%;}
 .mxw\:400px{max-width:400px;}
-.bg\:black{background:#111;}
 .w\,h\:50px{width:50px;height:50px;}
 .an\:scaler-inf-1s-eio{animation:scaler infinite 1s ease-in-out;}
-.p-tb\:30px{padding-top:30px;padding-bottom:30px;}
-.p-rl\:3pc{padding-right:3%;padding-left:3%;}
-.m-b\:10px{margin-bottom:10px;}
-.m-b\:20px{margin-bottom:20px;}
+.m-rl\:0{margin-right:0;margin-left:0;}
 @media only screen and (min-width: 768px) {
-.md-mxw\:30pc{max-width:30%;}
 .md-m\:10px{margin:10px;}
+.md-mxw\:30pc{max-width:30%;}
 }
 @keyframes spin{to { transform: rotate(360deg); }}
 @keyframes fadeIn{from { opacity: 0.2; } to { opacity: 1; }}

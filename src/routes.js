@@ -20,9 +20,9 @@ export default class Routes {
 
     const routes = [
       {
-        path: '/playlists',
+        path: '/playlist/:playlistId',
         exact: true,
-        component: () => import('./pages/playlist'),
+        component: () => import('./pages/playlist/index'),
       },
       {
         path: '/',

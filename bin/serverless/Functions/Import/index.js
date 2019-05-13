@@ -1,48 +1,100 @@
-const { GET } = require('fetchier');
-const { YOUTUBE_API_KEY, YOUTUBE_API_ENDPOINT } = require('../../config');
+const { GET, GQL } = require('fetchier');
+const { YOUTUBE_API_KEY, YOUTUBE_API_ENDPOINT, HASURA_ENDPOINT } = require('../../config');
+const queries = require('../queries');
+
 
 module.exports.handler = async event => {
   
   const body = JSON.parse(event.body);
+  const playlistId = body && body.playlistId || 'PLI33t8jpgAnc4p3ROWdz4hD_PERAQ4w0F';
   
-  return getYoutubePlaylist(body && body.playlistId)
-    .then(success)
-    .catch(fail)
+  try {
+    
+    let tracks = await getYoutubePlaylist(playlistId);
+    await storeData('track', tracks, 'videoId');
+    
+    const playlist = await getYoutubePlaylistData(playlistId);
+    const videoIds = tracks.map( ({ videoId }) => videoId );
+    const storedPlaylist = await storeData('playlist', { ...playlist, videoIds }, 'playlistId');
+    
+    return success({ ...playlist, ...storedPlaylist, tracks });
+  } catch (error){
+    return fail(error);
+  }
 }
 
-function getYoutubePlaylist(playlistId){
-  playlistId = playlistId || 'PLI33t8jpgAnc4p3ROWdz4hD_PERAQ4w0F';
+
+function getYoutubePlaylistData(playlistId){
+  const part = 'snippet,contentDetails';
+  const url = `${YOUTUBE_API_ENDPOINT}playlists?id=${playlistId}&part=${part}&key=${YOUTUBE_API_KEY}`;
+  
+  return GET({ url })
+    .then( ({ items: [ item ] }) => youtubePlaylistModel(item))
+}
+
+function storeData(table, values, key){
+  const query = Array.isArray(values) 
+    ? queries.upsertMultiple(table, { columns: Object.keys(values[0]), key }) 
+    : queries.upsert(table, { columns: Object.keys(values), key });
+    
+  const variables = { values };
+  console.log({ query, variables });
+  return GQL({ url: HASURA_ENDPOINT, query, variables })
+    .then( data => (data['insert_' + table].returning.shift() || {}) )
+}
+
+async function getYoutubePlaylist(playlistId, pageToken, tracks = []){
+  playlistId = playlistId || '';
+  
+  const pageTokenQuery = pageToken ? `&pageToken=${pageToken}` : '';
+  
   const part = 'snippet,contentDetails';
   const maxResults = 50;
-  const url = `${YOUTUBE_API_ENDPOINT}playlistItems?maxResults=${maxResults}&part=${part}&playlistId=${playlistId}&key=${YOUTUBE_API_KEY}`;
+  const url = `${YOUTUBE_API_ENDPOINT}playlistItems?maxResults=${maxResults}&part=${part}&playlistId=${playlistId}&key=${YOUTUBE_API_KEY}${pageTokenQuery}`;
   console.log(url);
   return GET({ url })
-    .then(data => data && data.items.map(youtubeItemModel))
+    .then(data => {
+      const pageToken = data.nextPageToken;
+      tracks = tracks.concat(data && data.items.map(item => youtubeTrackModel(item)) || []);
+      if(!pageToken) return tracks;
+      return getYoutubePlaylist(playlistId, pageToken, tracks);
+    })
 }
 
-function youtubeItemModel(item){
+function youtubePlaylistModel(item){
+  const { snippet: { publishedAt, channelId, title, description, thumbnails, channelTitle }, contentDetails: { itemCount } } = item || {};
+  return {
+    playlistId: item.id,
+    publishedAt,
+    channelId,
+    title,
+    description,
+    img: thumbnails.medium && thumbnails.medium.url,
+    channelTitle,
+    itemCount
+  }
+}
+
+function youtubeTrackModel(item){
   const { snippet, contentDetails } = item;
   const name = snippet.title.split('- ');
   return {
     name: name.pop(),
     artist: name.join('- '),
     title: snippet.title,
-    img: snippet.thumbnails.medium && snippet.thumbnails.medium.url,
+    img: snippet && snippet.thumbnails && snippet.thumbnails.medium && snippet.thumbnails.medium.url,
     videoId: contentDetails.videoId,
-    playlistAddedAt: snippet.publishedAt,
-    channelId: snippet.channelId,
-    playlistId: snippet.playlistId,
-    position: snippet.position,
     videoCreatedAt: contentDetails.videoPublishedAt,
   }
 }
 
 function result(statusCode, data){
+  console.log(data);
   return {
     statusCode,
     body: JSON.stringify({
       statusCode,
-      message: statusCode !== 200 && data.error || null,
+      message: statusCode !== 200 && data.message || data.error && data.error.message || String(data) || null,
       data: statusCode === 200 && data
     })
   }

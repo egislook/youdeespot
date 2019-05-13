@@ -1,52 +1,32 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { getPlaylist, getTrack } from '../libs/actions/playlist';
 import { fucss } from 'next-fucss/utils';
 
-import ElemHeader from '../elements/header';
-import ElemPlaylist from '../elements/playlist';
-import ElemPlayer from '../elements/player';
-import ElemFog from '../elements/fog';
+import ElemSearch from './search';
+import ElemFog from '../../elements/fog';
+
+import { useGlobal } from './hooks';
 
 const image = '/resources/img/youdeespot.png';
 
 export default () => {
-    
-  const { playlist, isLoading, message, track, isPlaying, duration, currentTime } = {};
   
-  // console.log({ playlist, isLoading, message, track, duration, currentTime });
+  const global = useGlobal();
+  const { isLoading, errorMessage, handleInfo } = global;
+  // const { playlist, track, isPlaying, duration, currentTime } = {};
   
   return (
     <section className="prim:8D34D5 dp:flx ai:c mnh:100vh jc:c c:F9FBFD mxw:100pc of:hd bg:1A1D22">
       
-      { (isLoading || message) && <ElemFog 
+      { (isLoading || errorMessage) && <ElemFog 
         image={image}
-        // onClose={this.handleClearLoadingState.bind(this)} 
-        message={!isLoading && message} /> }
+        onClose={handleInfo} 
+        message={!isLoading && errorMessage} /> }
       
-      <ElemHeader 
-        image={image}
-        // onChangePlaylist={this.handleFetchPlaylist.bind(this)} 
-        // onClearPlaylist={this.handleClearPlaylist.bind(this)} 
-        playlist={playlist} />
-      
-      { playlist && <div>
-        { track && <ElemPlayer 
-          // onTogglePlay={this.handleTogglePlay.bind(this)}
-          // onChangeTrack={this.handleChangeTrack.bind(this)}
-          // onChangeTime={this.handleChangeTime.bind(this)}
-          isPlaying={isPlaying}
-          duration={duration}
-          currentTime={currentTime}
-          track={track} />}
+      <ElemSearch
+        global={global}
+        image={image} />
         
-        <ElemPlaylist 
-          playlist={playlist} 
-          selectedTrack={track} 
-          //onSelectTrack={this.handleSelectTrack.bind(this)} 
-          />
-      </div> }
-    
     </section>
   )
 }

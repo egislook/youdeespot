@@ -22,12 +22,12 @@ export default class Routes {
       {
         path: '/playlists',
         exact: true,
-        component: () => import('./components/playlist'),
+        component: () => import('./pages/playlist'),
       },
       {
         path: '/',
         exact: true,
-        component: () => import('./components/home'),
+        component: () => import('./pages/home/index'),
       }
     ];
 

@@ -10,7 +10,7 @@ export default ({ track = {}, elem, src, handleTogglePlay, handleChangeTrack, is
   return (
     <div className="ps:fx b,r:0 m:0-15px m-b:10px w:100pc dp:flx">
       <div className="mxw:calc(704px-5px) w:100pc p-l:25px">
-        <div className="bg:prim800 p:3px l:0 w:100pc m-b:5px br:3px" onClick={ e => handleChangeTime(e, handleChangeTime, duration)}>
+        <div className="bg:prim800 p:3px l:0 w:100pc m-b:5px br:3px" onClick={ e => onChangeTime(e, handleChangeTime, duration)}>
           <div className="bg:prim h:3px m-l:0" style={{ width: percentage + '%' }} />
         </div>
         <div className="bg:prim bs:2 of:hd dp:flx p:10px br:5px bs:2 w:100pc">
@@ -34,11 +34,11 @@ export default ({ track = {}, elem, src, handleTogglePlay, handleChangeTrack, is
   )
 }
 
-function handleChangeTime(e, onChangeTime, duration){
+function onChangeTime(e, action, duration){
   const { width, left } = e.currentTarget.getBoundingClientRect();
   const currentPercentage = e.clientX - left;
   const currentTime = (currentPercentage / width) * duration;
-  onChangeTime && onChangeTime(currentTime);
+  action && action(currentTime);
 }
 
 function getMinsAndSecs(duration){

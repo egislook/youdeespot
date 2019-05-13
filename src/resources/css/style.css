@@ -38,6 +38,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-l\:0{margin-left:0;}
 .bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .br\:5px{border-radius:5px;}
+.m-rl\:0{margin-right:0;margin-left:0;}
 .h\,w\,mnw\,lh\:45px{height:45px;width:45px;min-width:45px;line-height:45px;}
 .bg-sz\:cv{background-size:cover;}
 .bg-ps\:c{background-position:center;}
@@ -115,7 +116,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mxw\:400px{max-width:400px;}
 .w\,h\:50px{width:50px;height:50px;}
 .an\:scaler-inf-1s-eio{animation:scaler infinite 1s ease-in-out;}
-.m-rl\:0{margin-right:0;margin-left:0;}
 @media only screen and (min-width: 768px) {
 .md-m\:10px{margin:10px;}
 .md-mxw\:30pc{max-width:30%;}

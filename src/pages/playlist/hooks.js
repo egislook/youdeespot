@@ -31,9 +31,12 @@ export const usePlaylist = ({ setIsLoading, handleInfo }, playlistId) => {
 
 export const usePlayer = ({ setIsLoading, handleInfo }, playlist) => {
   const elem = useRef();
+  
   const [ track, setTrack ] = useState();
   const [ src, setSrc ] = useState();
   const [ isPlaying, setIsPlaying ] = useState();
+  const [ trackInfo, setTrackInfo ] = useState({});
+  const [ timer, setTimer ] = useState();
   
   useEffect(() => {
     if(!track) return;
@@ -52,18 +55,17 @@ export const usePlayer = ({ setIsLoading, handleInfo }, playlist) => {
         handleChangeTrack();
       }
       elem.current.onloadedmetadata = e => {
-        const duration = elem.current.duration;
-        console.log(typeof duration, duration);
-        // this.handleTrackProgress();
+        // const duration = elem.current.duration;
+        // console.log(typeof duration, duration);
+        handleTrackProgress();
       }
       
     })
   }, [track])
   
-  return { track, handleTrack, src, handleTogglePlay, isPlaying, elem }
+  return { track, handleTrack, src, handleTogglePlay, isPlaying, elem, trackInfo, handleChangeTime }
   
   function handleTrack(track){
-    console.log(track);
     setTrack(track);
   }
   
@@ -74,10 +76,28 @@ export const usePlayer = ({ setIsLoading, handleInfo }, playlist) => {
   
   function handleTogglePlay(){
     !isPlaying 
-      ? (elem.current.play()) 
-      : (elem.current.pause());
+      ? (elem.current.play(), handleTrackProgress()) 
+      : (elem.current.pause(), clearTimeout(timer));
       
     setIsPlaying(!isPlaying);
+  }
+  
+  function handleTrackProgress(){
+    const currentTimer = setInterval(() => {
+      setTrackInfo({
+        duration: elem.current.duration,
+        currentTime: elem.current.currentTime
+      })
+    }, 500);
+    setTimer(currentTimer);
+  }
+  
+  function handleChangeTime(currentTime){
+    elem.current.currentTime = currentTime;
+    setTrackInfo({
+      duration: elem.current.duration,
+      currentTime
+    })
   }
 }
 

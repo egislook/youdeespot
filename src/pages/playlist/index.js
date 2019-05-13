@@ -37,7 +37,8 @@ export default (props) => {
           // isPlaying={isPlaying}
           // duration={duration}
           // currentTime={currentTime}
-          {...playerState} />
+          {...playerState}
+          {...playerState.trackInfo}/>
         
       </div>
         

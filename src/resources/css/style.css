@@ -19,6 +19,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mxw\:100pc{max-width:100%;}
 .of\:hd{overflow:hidden;}
 .bg\:1A1D22{background:#1A1D22;}
+.p\:30px{padding:30px;}
 .fs\:160pc{font-size:160%;}
 .m-t\:5px{margin-top:5px;}
 .lh\:1\.1{line-height:1.1;}
@@ -31,15 +32,16 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p-r\:10px{padding-right:10px;}
 .crs\:pt{cursor:pointer;}
 .m-t\:10px{margin-top:10px;}
+.of-x\:scroll{overflow-X:scroll;}
+.w\:100vw{width:100vw;}
 .bg\:26292D{background:#26292D;}
 .bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .br\:5px{border-radius:5px;}
-.m\:10px{margin:10px;}
+.w\:100pc{width:100%;}
+.m-b\:20px{margin-bottom:20px;}
 .hv-scl\:1\.05_bg\:black:hover{transform:scale(1.05);background:#111;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.w\:100pc{width:100%;}
 .dp\:bk{display:block;}
-.p\:30px{padding:30px;}
 .c\:green{color:#4CAF50;}
 .m\:15px-auto{margin:15px auto;}
 .mxw\:674px{max-width:674px;}
@@ -69,12 +71,17 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .w\,h\:50px{width:50px;height:50px;}
 .an\:scaler-inf-1s-eio{animation:scaler infinite 1s ease-in-out;}
 .p-tb\:30px{padding-top:30px;padding-bottom:30px;}
-.p-rl\:3pc{padding-right:3%;padding-left:3%;}
-.m-b\:10px{margin-bottom:10px;}
-.m-b\:20px{margin-bottom:20px;}
+.m-rl\:3pc{margin-right:3%;margin-left:3%;}
 @media only screen and (min-width: 768px) {
-.md-mxw\:30pc{max-width:30%;}
+.md-mxw\:800px{max-width:800px;}
 .md-m\:10px{margin:10px;}
+}
+@media only screen and (min-width: 1024px) {
+.lg-w\:225px{width:225px;}
+}
+@media only screen and (max-width: 769px) {
+.mdx-m\:4px{margin:4px;}
+.mdx-w\:200px{width:200px;}
 }
 @keyframes spin{to { transform: rotate(360deg); }}
 @keyframes fadeIn{from { opacity: 0.2; } to { opacity: 1; }}

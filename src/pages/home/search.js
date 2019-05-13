@@ -19,7 +19,7 @@ export default ({ image, global }) => {
   return (
     <div className={classNameHeader()}>
       
-      <div className="p-tb:30px p-rl:3pc">
+      <div className="p-tb:30px m-rl:3pc">
         <h1 className="fs:160pc m-t:5px lh:1.1 mxw:200px">{title.map(text => (
           <div key={text}>{text}</div>
         ))}</h1>
@@ -38,7 +38,7 @@ export default ({ image, global }) => {
         
         <ElemLogo image={image} name={name} />
         
-        <div className="m-t:10px">
+        <div className="m-t:10px dp:flx of-x:scroll w:100vw md-mxw:800px">
           { playlists.map(ElemPlaylistPreview) }
         </div>
       </div>
@@ -48,8 +48,8 @@ export default ({ image, global }) => {
 }
 
 const ElemPlaylistPreview = ({ img, title, channelTitle, playlistId }) => (
-  <Link className="md-m:10px md-mxw:30pc" to={'/playlist/' + playlistId }>
-    <span key={title} className="bg:26292D bs:2 br:5px w:100pc m-b:20px hv-scl:1.05_bg:black ts:all">
+  <Link className="mdx-m:4px md-m:10px" to={'/playlist/' + playlistId }>
+    <span key={title} className="mdx-w:200px lg-w:225px bg:26292D bs:2 br:5px w:100pc m-b:20px hv-scl:1.05_bg:black ts:all">
       <img className="w:100pc dp:bk" src={img} />
       <p className="p:30px">{title} by {channelTitle}</p>
     </span>

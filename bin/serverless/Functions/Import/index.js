@@ -56,13 +56,21 @@ async function getYoutubePlaylist(playlistId, pageToken, tracks = []){
     .then(data => {
       const pageToken = data.nextPageToken;
       tracks = tracks.concat(data && data.items.map(item => youtubeTrackModel(item)) || []);
-      if(!pageToken) return tracks;
+      if(!pageToken){
+        // tracks = tracks
+        //   .sort((a, b) => a.position > b.position)
+        //   .reduce((arr, item) => {
+        //     delete item.position;
+        //     return arr.concat([item]);
+        //   }, []);
+        return tracks;
+      }
       return getYoutubePlaylist(playlistId, pageToken, tracks);
     })
 }
 
 function youtubePlaylistModel(item){
-  const { snippet: { publishedAt, channelId, title, description, thumbnails, channelTitle }, contentDetails: { itemCount } } = item || {};
+  const { snippet: { publishedAt, channelId, title, description, thumbnails, channelTitle, position }, contentDetails: { itemCount } } = item || {};
   return {
     playlistId: item.id,
     publishedAt,
@@ -82,6 +90,7 @@ function youtubeTrackModel(item){
     name: name.pop(),
     artist: name.join('- '),
     title: snippet.title,
+    // position: snippet.position,
     img: snippet && snippet.thumbnails && snippet.thumbnails.medium && snippet.thumbnails.medium.url,
     videoId: contentDetails.videoId,
     videoCreatedAt: contentDetails.videoPublishedAt,

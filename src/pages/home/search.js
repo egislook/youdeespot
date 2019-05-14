@@ -44,7 +44,7 @@ export default ({ image, global }) => {
           <h2 className="fs:85pc m-b:10px m-t:10px c:56585C mxw:250px">{suggestions}</h2>
         </div>
         
-        <div className="m-t:10px of:auto mxw:700px w:100pc">
+        <div className="m-t:10px of:auto mxw:700px w:100pc md-p-rl:3pc">
           <div className="dp:flx">
             { playlists.map(ElemPlaylistPreview) }
           </div>
@@ -55,7 +55,7 @@ export default ({ image, global }) => {
 }
 
 const ElemPlaylistPreview = ({ img, title, channelTitle, playlistId }) => (
-  <Link key={title} className="mdx-m:5px m:10px" to={'/playlist/' + playlistId }>
+  <Link key={title} className="mdx-m:5px m:10px m-l:0" to={'/playlist/' + playlistId }>
     <span className="ps:rl of:hd mdx-w:200px lg-w:225px bg:26292D bs:2 br:5px w:100pc m-b:20px hv-scl:1.05_bg:black ts:all hv-try:0_h3">
       <img className="w:100pc dp:bk" src={img} />
       <h3 className="p:30px ps:ab w,h,lh:100pc bg:blacka7 t,l:0 md-try:100pc ts:all">{title}<br /><small className="fs:80pc fw:300">{channelTitle}</small></h3>

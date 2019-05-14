@@ -37,5 +37,8 @@ export async function fetchPlaylist(playlistId){
   const { videoIds } = playlist;
   
   return GQL({ url: HASURA_URL, query: queries.tracks, variables: { videoIds }  })
-    .then(data => ({ ...playlist, tracks: data.track }))
+    .then(data => {
+      const tracks = videoIds.map( videoId => data.track.find(track => track.videoId === videoId) )
+      return ({ ...playlist, tracks })
+    })
 }

@@ -4,11 +4,10 @@ import { fucss } from 'next-fucss/utils'
 export default ({ playlist, onSelectTrack, selectedTrack = {} }) => {
   return (
     <div className={classNamePlaylist(!!selectedTrack)}>
-      <h3 className="fs:100pc">{playlist.title} by {playlist.channelTitle}</h3>
-      {playlist && playlist.tracks && playlist.tracks.map( track => (
+      {playlist && playlist.tracks && playlist.tracks.map( (track, position) => (
         <div 
           key={track.videoId}
-          onClick={e => onSelectTrack(track)} 
+          onClick={e => onSelectTrack(track, position)} 
           className={classNamePlaylistTrack(selectedTrack && track.videoId == selectedTrack.videoId)}>
             <img src={track.img} className="h:25px m-t:2px" />
             <div className="m-l:10px">
@@ -22,8 +21,8 @@ export default ({ playlist, onSelectTrack, selectedTrack = {} }) => {
 }
 
 const classNamePlaylist = (isSelectedTrack) => fucss({
-  'ta:l p-t:70px p-rl:15px p-b:20px w:100vw mxw:704px': true,
-  'm-b:100px': isSelectedTrack
+  'ta:l p-tb:20px mdx-p-rl:15px w:100vw mxw:700px': true,
+  'm-b:50px': isSelectedTrack
 })
 
 const classNamePlaylistTrack = (isSelectedTrack) => fucss({

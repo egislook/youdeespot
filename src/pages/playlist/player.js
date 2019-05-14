@@ -2,30 +2,35 @@ import React from 'react'
 import { fucss } from 'next-fucss/utils'
 
 export default ({ track = {}, elem, src, handleTogglePlay, handleChangeTrack, isPlaying, duration, currentTime, handleChangeTime }) => {
-  console.log({ src });
+  
   const percentage = (currentTime / duration) * 100;
   const durationMinsAndSecs = getMinsAndSecs(duration);
   const currentMinsAndSecs = getMinsAndSecs(currentTime);
   
   return (
-    <div className="ps:fx b,r:0 m:0-15px m-b:10px w:100pc dp:flx">
-      <div className="mxw:calc(704px-5px) w:100pc p-l:25px">
-        <div className="bg:prim800 p:3px l:0 w:100pc m-b:5px br:3px" onClick={ e => onChangeTime(e, handleChangeTime, duration)}>
-          <div className="bg:prim h:3px m-l:0" style={{ width: percentage + '%' }} />
-        </div>
-        <div className="bg:prim bs:2 of:hd dp:flx p:10px br:5px bs:2 w:100pc">
+    <div className="ps:fx b,l:0 w:100pc dp:flx">
+      <div className="w:100pc mxw:700px">
+        <div className="bg:sec bs:2 of:hd dp:flx bs:2 w:100pc">
           <div className="m-rl:0">
-            <div onClick={handleTogglePlay} className="h,w,mnw,lh:45px bg-sz:cv bg-ps:c" style={{backgroundImage: `url(${track.img})`}}>
-              {!isPlaying && <i className="fu-triangle-right lh:1 fs:150pc" />}
+            <div onClick={handleTogglePlay} className="h,w,mnw,lh:60px bg-sz:cv bg-ps:c" style={{backgroundImage: `url(${track.img})`}}>
+              {!isPlaying 
+                ? <i className="fu-triangle-right lh:1 fs:150pc" /> 
+                : <a className="fs:70pc fw:700 bg:blacka5 w,h:100pc t:0 m-t:3npx">{currentMinsAndSecs.minutes}:{currentMinsAndSecs.seconds}</a> }
             </div>
-            <p className="fs:40pc m-t:2px">{durationMinsAndSecs.minutes}:{durationMinsAndSecs.seconds} / {currentMinsAndSecs.minutes}:{currentMinsAndSecs.seconds}</p>
           </div>
-          <div className="fs:70pc ta:l m-l:10px">
-            <h3>{track.name}</h3>
-            <p className="m-t:5px">{track.artist}</p>
-          </div>
-          <div className="m-r:0">
-            <i className="fu-fast-forward p:7px br:50pc bd:1px-sld-white bg:blacka2 m-t:7px bs:2" onClick={handleChangeTrack} />
+          <div className="w:100pc dp:flx flxd:col jc:sb">
+            <div className="dp:flx w:100pc h:100pc ai:c">
+              <div className="fs:70pc ta:l m-l:10px">
+                <h3>{track.name}</h3>
+                <p className="m-t:3px">{track.artist}</p>
+              </div>
+              <div className="m-r:10px">
+                <i className="fu-fast-forward p:7px br:50pc bg:sec600 c:sec300 fs:90pc" onClick={handleChangeTrack} />
+              </div>
+            </div>
+            <div className="bg:blacka3 p-t:3px p-b:5px l:0 w:100pc crs:pt" onClick={ e => onChangeTime(e, handleChangeTime, duration)}>
+              <div className="bg:sec h:3px m-l:0" style={{ width: percentage + '%' }} />
+            </div>
           </div>
           <audio ref={elem} className="dp:n" id="youtube" autoPlay controls src={src} />
         </div>

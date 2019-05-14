@@ -3,7 +3,7 @@ import { fetchPlaylist, fetchTrack } from '../../libs/fetchers';
 import { useEffect, useState, useRef } from 'react';
 
 export const useGlobal = () => {
-  const [ isLoading, setIsLoading ] = useState();
+  const [ isLoading, setIsLoading ] = useState(true);
   const [ errorMessage, setErrorMessage ] = useState();
   
   return { isLoading, setIsLoading, errorMessage, handleInfo }
@@ -15,24 +15,25 @@ export const useGlobal = () => {
 }
 
 export const usePlaylist = ({ setIsLoading, handleInfo }, playlistId) => {
-  const [ playlist, setPlaylist ] = useState({});
+  const [ playlist, setPlaylist ] = useState();
   
   useEffect(() => {
-    setIsLoading();
     fetchPlaylist(playlistId)
       .then( data => {
         setPlaylist(data);
-        handleInfo();
+        setIsLoading();
       })
   }, [])
   
   return { playlist }
 }
 
-export const usePlayer = ({ setIsLoading, handleInfo }, playlist) => {
+export const usePlayer = ({ setIsLoading, handleInfo }, playlist = {}) => {
+  const { tracks } = playlist;
   const elem = useRef();
   
   const [ track, setTrack ] = useState();
+  const [ position, setPosition ] = useState();
   const [ src, setSrc ] = useState();
   const [ isPlaying, setIsPlaying ] = useState();
   const [ trackInfo, setTrackInfo ] = useState({});
@@ -50,28 +51,27 @@ export const usePlayer = ({ setIsLoading, handleInfo }, playlist) => {
       elem.current.onended = e => handleChangeTrack();
       
       elem.current.onerror = (error) => {
-        console.log(error);
         handleInfo({ message: `${track.artist} - ${track.name} is Not Available` });
         handleChangeTrack();
       }
-      elem.current.onloadedmetadata = e => {
-        // const duration = elem.current.duration;
-        // console.log(typeof duration, duration);
-        handleTrackProgress();
-      }
+      elem.current.onloadedmetadata = e => handleTrackProgress();
       
     })
+    return clearInterval(timer);
   }, [track])
   
-  return { track, handleTrack, src, handleTogglePlay, isPlaying, elem, trackInfo, handleChangeTime }
+  return { track, handleTrack, src, handleTogglePlay, isPlaying, elem, trackInfo, handleChangeTime, handleChangeTrack }
   
-  function handleTrack(track){
+  function handleTrack(track, position){
     setTrack(track);
+    setPosition(position);
   }
   
   function handleChangeTrack(){
-    console.log('next');
-    // const nextTrack = playlist.find(item => );
+    const nextPosition = tracks.length <= position ? 0 : position + 1;
+    const nextTrack = tracks[nextPosition];
+    console.log('change', { nextTrack, nextPosition });
+    handleTrack(nextTrack, nextPosition);
   }
   
   function handleTogglePlay(){

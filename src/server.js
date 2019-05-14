@@ -8,7 +8,7 @@ export default class Server {
     
     serverHandler.hooks.beforeHtmlRender.tapPromise('AddFavIconAndFucss', async (Application) => {
       const { htmlProps: { head } } = Application;
-      head.push(<meta key="meta-theme-color" name="theme-color" content="#8D34D5" />);
+      head.push(<meta key="meta-theme-color" name="theme-color" content="#26292D" />);
       head.push(<link key="favicon" rel="shortcut icon" type="image/png" href={favicon} />);
       head.push(<link key="fucssStyle" type="text/css" id="fucssStyle" rel="stylesheet" href={fucssStyle} />)
       head.push(<link key="fuIco" type="text/css" id="fuIco" rel="stylesheet" href="https://cdn.rawgit.com/noneedsystem/fuico/0.0.8/style.css" />)

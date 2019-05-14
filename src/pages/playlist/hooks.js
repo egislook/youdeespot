@@ -43,16 +43,18 @@ export const usePlayer = ({ setIsLoading, handleInfo }, playlist = {}) => {
     if(!track) return;
     
     setIsLoading(true);
-    fetchTrack(track.videoId).then( src => {
+    fetchTrack(track).then( src => {
+      console.log({ src });
       setSrc(src);
       setIsPlaying(true);
       setIsLoading();
       
       elem.current.onended = e => handleChangeTrack();
       
-      elem.current.onerror = (error) => {
+      elem.current.onerror = (e) => {
+        console.log(e.target.error, e.target.error.code, track.title);
         handleInfo({ message: `${track.artist} - ${track.name} is Not Available` });
-        handleChangeTrack();
+        // handleChangeTrack();
       }
       elem.current.onloadedmetadata = e => handleTrackProgress();
       
@@ -63,12 +65,12 @@ export const usePlayer = ({ setIsLoading, handleInfo }, playlist = {}) => {
   return { track, handleTrack, src, handleTogglePlay, isPlaying, elem, trackInfo, handleChangeTime, handleChangeTrack }
   
   function handleTrack(track, position){
-    setTrack(track);
     setPosition(position);
+    setTrack(track);
   }
   
   function handleChangeTrack(){
-    const nextPosition = tracks.length <= position ? 0 : position + 1;
+    const nextPosition = tracks.length <= position ? 0 : (position || 0) + 1;
     const nextTrack = tracks[nextPosition];
     console.log('change', { nextTrack, nextPosition });
     handleTrack(nextTrack, nextPosition);

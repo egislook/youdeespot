@@ -5,7 +5,7 @@ const API_URL = false ? 'https://youdeespot.com' : 'https://pwa-noneede.c9users.
 
 const queries = {
   tracks: `query($videoIds: [String]) { track(where: { videoId: { _in: $videoIds } }) { id title name artist img videoId } }`,
-  playlists: `query { playlist { id title playlistId title description img channelTitle itemCount } }`,
+  playlists: `query { playlist (order_by: {createdAt: desc}, limit: 50) { id title playlistId title description img channelTitle itemCount } }`,
   playlist: (playlistId) => `query { playlist(where: { playlistId: { _eq: "${playlistId}"}}) { id title playlistId title description img channelTitle itemCount videoIds } }`
 }
 

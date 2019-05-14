@@ -56,15 +56,7 @@ async function getYoutubePlaylist(playlistId, pageToken, tracks = []){
     .then(data => {
       const pageToken = data.nextPageToken;
       tracks = tracks.concat(data && data.items.map(item => youtubeTrackModel(item)) || []);
-      if(!pageToken){
-        // tracks = tracks
-        //   .sort((a, b) => a.position > b.position)
-        //   .reduce((arr, item) => {
-        //     delete item.position;
-        //     return arr.concat([item]);
-        //   }, []);
-        return tracks;
-      }
+      if(!pageToken) return tracks;
       return getYoutubePlaylist(playlistId, pageToken, tracks);
     })
 }
@@ -98,7 +90,7 @@ function youtubeTrackModel(item){
 }
 
 function result(statusCode, data){
-  console.log(data);
+  // console.log(data);
   return {
     statusCode,
     body: JSON.stringify({
